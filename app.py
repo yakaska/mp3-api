@@ -44,9 +44,7 @@ def get_audio():
     for n, track in enumerate(tracks, 1):
         songs.append(Track(track['title'], track['artist'], track['url'], track['track_covers'],
                            track['duration'] * 1000).serialize())
-        if len(songs) == 5:
-            tracks.close()
-            break
+    tracks.close()
     return jsonify(songs)
 
 
