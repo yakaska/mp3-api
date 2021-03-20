@@ -1,8 +1,10 @@
 import socket
 
+import vkaudiotoken
 from flask import Flask, jsonify, request
 from vk_api import vk_api
 from vk_api.audio import VkAudio
+from vkaudiotoken import get_vk_official_token
 
 from Audio import Track
 
@@ -18,13 +20,8 @@ def home():
 def get_token():
     login = request.args.get('login')
     password = request.args.get('password')
-    vk_session = vk_api.VkApi(login, password)
-    try:
-        vk_session.auth()
-    except vk_api.AuthError as error_msg:
-        print(error_msg)
-        return
-    token = vk_session.token
+    token = get_vk_official_token(login=login, password=password)
+    print(token)
     return token
 
 
