@@ -13,4 +13,5 @@ six==1.15.0
 soupsieve==2.2
 urllib3==1.26.4
 vk-api==11.9.1
+vkaudiotoken==0.5.1
 Werkzeug==1.0.1
