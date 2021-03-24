@@ -19,24 +19,20 @@ def get_token():
 
 @app.route('/audio.get', methods=['GET', 'POST'])
 def get_all_audio():
-    owner_id = request.args.get('owner_id')
-    album_id = request.args.get('album_id')
     count = request.args.get('count')
-    offset = request.args.get('offset')
     access_token = request.args.get('access_token')
 
     sess = requests.session()
     sess.headers.update({'User-Agent': user_agent})
     response = sess.get(
         "https://api.vk.com/method/audio.get/",
-        params=[('owner_id', owner_id),
-                ('album_id', album_id),
+        params=[
                 ('count', count),
-                ('offset', offset),
                 ('access_token', access_token),
                 ('v', '5.95')]
     )
-    return response.content
+    print(response.json())
+    return response.json()
 
 
 if __name__ == '__app__':
