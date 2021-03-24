@@ -1,14 +1,17 @@
-from flask import Flask, request
-from vkaudiotoken import get_vk_official_token
+from flask import Flask, request, jsonify
+from vkaudiotoken import get_vk_official_token, TokenException
 
 app = Flask(__name__)
 
 
-@app.route('/token.get', methods=['POST'])
+@app.route('/token.get', methods=['GET', 'POST'])
 def get_token():
     login = request.args.get('login')
     password = request.args.get('password')
-    token = get_vk_official_token(login=login, password=password)
+    try:
+        token = get_vk_official_token(login=login, password=password)
+    except TokenException as ex:
+        return jsonify(ex.extra)
     return token
 
 
