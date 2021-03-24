@@ -35,9 +35,8 @@ def get_all_audio():
                 ('offset', offset),
                 ('access_token', access_token),
                 ('v', '5.95')]
-    ).json()
-    print(response)
-    return response
+    )
+    return response.content
 
 
 if __name__ == '__app__':
