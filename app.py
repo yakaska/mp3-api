@@ -24,7 +24,6 @@ def get_all_audio():
     count = request.args.get('count')
     offset = request.args.get('offset')
     access_token = request.args.get('access_token')
-    version = request.args.get('v')
 
     sess = requests.session()
     sess.headers.update({'User-Agent': user_agent})
@@ -35,7 +34,7 @@ def get_all_audio():
                 ('count', count),
                 ('offset', offset),
                 ('access_token', access_token),
-                ('v', version)]
+                ('v', '5.95')]
     ).json()
     print(response)
     return response
