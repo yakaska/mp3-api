@@ -28,8 +28,7 @@ def get_all_audio():
 
     sess = requests.session()
     sess.headers.update({'User-Agent': user_agent})
-
-    return sess.get(
+    response = sess.get(
         "https://api.vk.com/method/audio.get/",
         params=[('owner_id', owner_id),
                 ('album_id', album_id),
@@ -38,6 +37,8 @@ def get_all_audio():
                 ('access_token', access_token),
                 ('v', version)]
     ).json()
+    print(response)
+    return response
 
 
 if __name__ == '__app__':
