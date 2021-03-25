@@ -27,18 +27,19 @@ def get_all_audio():
     response = sess.get(
         "https://api.vk.com/method/audio.get/",
         params=[
-                ('count', count),
-                ('access_token', access_token),
-                ('v', '5.95')]
+            ('count', count),
+            ('access_token', access_token),
+            ('v', '5.95')]
     )
     print(response.json())
     return response.json()
 
 
-@app.route('/jsonify')
+@app.route('/jsonify', methods=['GET', 'POST'])
 def json():
     res = request.args.get('string')
     return jsonify(res)
+
 
 if __name__ == '__app__':
     app.run()
