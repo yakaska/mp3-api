@@ -35,5 +35,10 @@ def get_all_audio():
     return response.json()
 
 
+@app.route('/jsonify')
+def json():
+    res = request.args.get('string')
+    return jsonify(res)
+
 if __name__ == '__app__':
     app.run()
